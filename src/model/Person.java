@@ -1,46 +1,106 @@
 package model;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Person.
+ */
 public abstract class Person implements Comparable<Person>{
+    
+    /** The code. */
     private String code;
+    
+    /** The name. */
     private String name;
+    
+    /** The last name. */
     private String lastName;
 
+    public Person() {
+	}
+
+	/**
+     * Instantiates a new person.
+     *
+     * @param code the code
+     * @param name the name
+     * @param lastName the last name
+     */
     public Person(String code, String name, String lastName){
     	this.code = code;
     	this.name = name;
     	this.lastName = lastName;
     }
 
+    /**
+     * Gets the code.
+     *
+     * @return the code
+     */
     public String getCode() {
         return code;
     }
 
+    /**
+     * Sets the code.
+     *
+     * @param code the new code
+     */
     public void setCode(String code) {
         this.code = code;
     }
 
+    /**
+     * Gets the name.
+     *
+     * @return the name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets the name.
+     *
+     * @param name the new name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+	/**
+	 * Gets the last name.
+	 *
+	 * @return the last name
+	 */
 	public String getLastName() {
 		return lastName;
 	}
 
+	/**
+	 * Sets the last name.
+	 *
+	 * @param lastName the new last name
+	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 	
 	
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public String toString() {
 		return "Person [code=" + code + ", name=" + name + ", lastName=" + lastName + "]";
 	}
 
+	/**
+	 * Hash code.
+	 *
+	 * @return the int
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -49,6 +109,12 @@ public abstract class Person implements Comparable<Person>{
 		return result;
 	}
 
+	/**
+	 * Equals.
+	 *
+	 * @param obj the obj
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -66,22 +132,20 @@ public abstract class Person implements Comparable<Person>{
 		return true;
 	}
 
-	/**
-	 * This method allows to get compare between the code and o.code based on:
-	 * 	@return if code is minor than o.code then it will return -1
-	 * 			if code is major than o.code then it will return 1
-	 * 			if both codes are equal, return 0
-	 */
 	@Override
 	public int compareTo(Person o) {
 		int comparation = 0;
-		int code = Integer.parseInt(o.getCode());
-		int thisCode = Integer.parseInt(this.code);
-		if (thisCode < code) {
+		int auxiliarCode1 =  Integer.parseInt(this.code);
+		int auxiliarCode2 = Integer.parseInt(o.getCode());
+		
+		if(auxiliarCode1<auxiliarCode2) {
 			comparation = -1;
-		} else if (thisCode > code) {
+		}else if(auxiliarCode1>auxiliarCode2) {
 			comparation = 1;
 		}
+		
 		return comparation;
 	}
+
+
 }
