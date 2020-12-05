@@ -16,8 +16,8 @@ public class Employee extends Person {
 	 * @param lastName the last name
 	 * @param salary   the salary
 	 */
-	public Employee(String code, String name, String lastName, double salary) {
-		super(code, name, lastName);
+	public Employee(String code, String name, String lastName, String password, double salary) {
+		super(code, name, lastName, password);
 		this.salary = salary;
 	}
 

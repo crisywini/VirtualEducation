@@ -26,9 +26,9 @@ public class Teacher extends Employee {
 	 * @param account  the account
 	 * @param school   the school
 	 */
-	public Teacher(String code, String name, String lastName, double salary, TeacherAccount account,
+	public Teacher(String code, String name, String lastName, String password, double salary, TeacherAccount account,
 			VirtualSchool school) {
-		super(code, name, lastName, salary);
+		super(code, name, lastName, password, salary);
 		this.account = account;
 		this.school = school;
 		courses = new ArrayList<Course>();

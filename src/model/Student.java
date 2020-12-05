@@ -6,23 +6,23 @@ import java.util.ArrayList;
  * The Class Student.
  */
 public class Student extends Person {
-	
+
 	/** The registers. */
 	private ArrayList<Register> registers;
-	
+
 	/** The account. */
 	private StudentAccount account;
 
 	/**
 	 * Instantiates a new student.
 	 *
-	 * @param code the code
-	 * @param name the name
+	 * @param code     the code
+	 * @param name     the name
 	 * @param lastName the last name
-	 * @param account the account
+	 * @param account  the account
 	 */
-	public Student(String code, String name, String lastName, StudentAccount account) {
-		super(code, name, lastName);
+	public Student(String code, String name, String lastName, String password, StudentAccount account) {
+		super(code, name, lastName, password);
 		this.registers = new ArrayList<Register>();
 	}
 

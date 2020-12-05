@@ -17,8 +17,8 @@ public class Director extends Employee {
 	 * @param salary   the salary
 	 * @param school   the school
 	 */
-	public Director(String code, String name, String lastName, double salary, VirtualSchool school) {
-		super(code, name, lastName, salary);
+	public Director(String code, String name, String lastName, String password, double salary, VirtualSchool school) {
+		super(code, name, lastName, password, salary);
 		this.school = school;
 	}
 

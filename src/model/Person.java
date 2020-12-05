@@ -3,68 +3,78 @@ package model;
 /**
  * The Class Person.
  */
-public abstract class Person implements Comparable<Person>{
-    
-    /** The code. */
-    private String code;
-    
-    /** The name. */
-    private String name;
-    
-    /** The last name. */
-    private String lastName;
+public abstract class Person implements Comparable<Person> {
 
-    public Person() {
+	/** The code. */
+	private String code;
+	private String password;
+	/** The name. */
+	private String name;
+
+	/** The last name. */
+	private String lastName;
+
+	public Person() {
 	}
 
 	/**
-     * Instantiates a new person.
-     *
-     * @param code the code
-     * @param name the name
-     * @param lastName the last name
-     */
-    public Person(String code, String name, String lastName){
-    	this.code = code;
-    	this.name = name;
-    	this.lastName = lastName;
-    }
+	 * Instantiates a new person.
+	 *
+	 * @param code     the code
+	 * @param name     the name
+	 * @param lastName the last name
+	 */
+	public Person(String code, String name, String lastName, String password) {
+		this.code = code;
+		this.name = name;
+		this.lastName = lastName;
+		this.password = password;
+	}
 
-    /**
-     * Gets the code.
-     *
-     * @return the code
-     */
-    public String getCode() {
-        return code;
-    }
+	
+	public String getPassword() {
+		return password;
+	}
 
-    /**
-     * Sets the code.
-     *
-     * @param code the new code
-     */
-    public void setCode(String code) {
-        this.code = code;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    /**
-     * Gets the name.
-     *
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * Gets the code.
+	 *
+	 * @return the code
+	 */
+	public String getCode() {
+		return code;
+	}
 
-    /**
-     * Sets the name.
-     *
-     * @param name the new name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+	/**
+	 * Sets the code.
+	 *
+	 * @param code the new code
+	 */
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the new name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	/**
 	 * Gets the last name.
@@ -83,8 +93,7 @@ public abstract class Person implements Comparable<Person>{
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
-	
+
 	/**
 	 * To string.
 	 *
@@ -140,15 +149,15 @@ public abstract class Person implements Comparable<Person>{
 	@Override
 	public int compareTo(Person o) {
 		int comparation = 0;
-		int auxiliarCode1 =  Integer.parseInt(this.code);
+		int auxiliarCode1 = Integer.parseInt(this.code);
 		int auxiliarCode2 = Integer.parseInt(o.getCode());
-		
-		if(auxiliarCode1<auxiliarCode2) {
+
+		if (auxiliarCode1 < auxiliarCode2) {
 			comparation = -1;
-		}else if(auxiliarCode1>auxiliarCode2) {
+		} else if (auxiliarCode1 > auxiliarCode2) {
 			comparation = 1;
 		}
-		
+
 		return comparation;
 	}
 }
