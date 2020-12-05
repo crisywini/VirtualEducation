@@ -1,6 +1,6 @@
 package model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * The Class Teacher.
@@ -11,7 +11,7 @@ public class Teacher extends Employee {
 	private TeacherAccount account;
 
 	/** The courses. */
-	private LinkedList<Course> courses;
+	private ArrayList<Course> courses;
 
 	/** The school. */
 	private VirtualSchool school;
@@ -31,7 +31,7 @@ public class Teacher extends Employee {
 		super(code, name, lastName, salary);
 		this.account = account;
 		this.school = school;
-		courses = new LinkedList<Course>();
+		courses = new ArrayList<Course>();
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class Teacher extends Employee {
 	 *
 	 * @return the courses
 	 */
-	public LinkedList<Course> getCourses() {
+	public ArrayList<Course> getCourses() {
 		return courses;
 	}
 
@@ -66,7 +66,7 @@ public class Teacher extends Employee {
 	 *
 	 * @param courses the new courses
 	 */
-	public void setCourses(LinkedList<Course> courses) {
+	public void setCourses(ArrayList<Course> courses) {
 		this.courses = courses;
 	}
 

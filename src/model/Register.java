@@ -1,6 +1,6 @@
 package model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * The Class Register.
@@ -14,7 +14,7 @@ public class Register {
 	private Student student;
 	
 	/** The courses. */
-	private LinkedList<Course> courses;
+	private ArrayList<Course> courses;
 
 	/**
 	 * Instantiates a new register.
@@ -23,7 +23,7 @@ public class Register {
 	 * @param student the student
 	 * @param courses the courses
 	 */
-	public Register(String id, Student student, LinkedList<Course> courses) {
+	public Register(String id, Student student, ArrayList<Course> courses) {
 		this.id = id;
 		this.student = student;
 		this.courses = courses;
@@ -71,7 +71,7 @@ public class Register {
 	 *
 	 * @return the courses
 	 */
-	public LinkedList<Course> getCourses() {
+	public ArrayList<Course> getCourses() {
 		return courses;
 	}
 
@@ -80,7 +80,7 @@ public class Register {
 	 *
 	 * @param courses the new courses
 	 */
-	public void setCourses(LinkedList<Course> courses) {
+	public void setCourses(ArrayList<Course> courses) {
 		this.courses = courses;
 	}
 

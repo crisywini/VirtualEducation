@@ -1,6 +1,6 @@
 package model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * The Class Student.
@@ -8,7 +8,7 @@ import java.util.LinkedList;
 public class Student extends Person {
 	
 	/** The registers. */
-	private LinkedList<Register> registers;
+	private ArrayList<Register> registers;
 	
 	/** The account. */
 	private StudentAccount account;
@@ -23,7 +23,7 @@ public class Student extends Person {
 	 */
 	public Student(String code, String name, String lastName, StudentAccount account) {
 		super(code, name, lastName);
-		this.registers = new LinkedList<Register>();
+		this.registers = new ArrayList<Register>();
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class Student extends Person {
 	 *
 	 * @return the registers
 	 */
-	public LinkedList<Register> getRegisters() {
+	public ArrayList<Register> getRegisters() {
 		return registers;
 	}
 
@@ -58,7 +58,7 @@ public class Student extends Person {
 	 *
 	 * @param registers the new registers
 	 */
-	public void setRegisters(LinkedList<Register> registers) {
+	public void setRegisters(ArrayList<Register> registers) {
 		this.registers = registers;
 	}
 

@@ -3,7 +3,7 @@
  */
 package model.util;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * The Class BinaryTree.
@@ -62,22 +62,13 @@ public class BinaryTree<T extends Comparable<T>> {
 		return current;
 	}
 
-	/**
-	 * Adds the.
-	 *
-	 * @param value the value
-	 */
+	
 	public void add(T value) {
 		add(root, value);
 	}
 
-	/**
-	 * Do preorder.
-	 *
-	 * @param stringBuilder the string builder
-	 * @param current       the current
-	 */
-	private void doPreorder(LinkedList<T> elements, Node<T> current) {
+
+	private void doPreorder(ArrayList<T> elements, Node<T> current) {
 		if (current != null) {
 			elements.add(current.value);
 			doPreorder(elements, current.left);
@@ -85,7 +76,7 @@ public class BinaryTree<T extends Comparable<T>> {
 		}
 	}
 
-	private void doInOrder(LinkedList<T> elements, Node<T> current) {
+	private void doInOrder(ArrayList<T> elements, Node<T> current) {
 		if (current != null) {
 			doInOrder(elements, current.left);
 			elements.add(current.value);
@@ -93,13 +84,8 @@ public class BinaryTree<T extends Comparable<T>> {
 		}
 	}
 
-	/**
-	 * Do post order.
-	 *
-	 * @param stringBuilder the string builder
-	 * @param current       the current
-	 */
-	private void doPostOrder(LinkedList<T> elements, Node<T> current) {
+	
+	private void doPostOrder(ArrayList<T> elements, Node<T> current) {
 		if (current != null) {
 			doPostOrder(elements, current.left);
 			doPostOrder(elements, current.right);
@@ -107,20 +93,20 @@ public class BinaryTree<T extends Comparable<T>> {
 		}
 	}
 
-	public LinkedList<T> getPreOrder() {
-		LinkedList<T> elements = new LinkedList<T>();
+	public ArrayList<T> getPreOrder() {
+		ArrayList<T> elements = new ArrayList<T>();
 		doPreorder(elements, this.root);
 		return elements;
 	}
 
-	public LinkedList<T> getInOrder() {
-		LinkedList<T> elements = new LinkedList<T>();
+	public ArrayList<T> getInOrder() {
+		ArrayList<T> elements = new ArrayList<T>();
 		doInOrder(elements, this.root);
 		return elements;
 	}
 
-	public LinkedList<T> getPostOrder() {
-		LinkedList<T> elements = new LinkedList<T>();
+	public ArrayList<T> getPostOrder() {
+		ArrayList<T> elements = new ArrayList<T>();
 		doPostOrder(elements, this.root);
 		return elements;
 	}

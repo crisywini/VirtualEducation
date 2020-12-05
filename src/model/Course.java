@@ -1,7 +1,6 @@
 package model;
 
-import java.util.LinkedList;
-
+import java.util.ArrayList;
 
 import model.util.BinaryTree;
 
@@ -14,7 +13,7 @@ public class Course implements ICourse {
 	private Teacher teacher;
 
 	/** The registers. */
-	private LinkedList<Register> registers;
+	private ArrayList<Register> registers;
 
 	/** The students. */
 	private BinaryTree<Person> students;
@@ -43,7 +42,7 @@ public class Course implements ICourse {
 	 */
 	public Course(String id, String name, String description, Teacher teacher, BinaryTree<Person> students,
 			VirtualSchool school) {
-		registers = new LinkedList<Register>();
+		registers = new ArrayList<Register>();
 		this.students = students;
 		this.id = id;
 		this.name = name;
@@ -93,7 +92,7 @@ public class Course implements ICourse {
 	 *
 	 * @return the registers
 	 */
-	public LinkedList<Register> getRegisters() {
+	public ArrayList<Register> getRegisters() {
 		return registers;
 	}
 
@@ -102,7 +101,7 @@ public class Course implements ICourse {
 	 *
 	 * @param registers the new registers
 	 */
-	public void setRegisters(LinkedList<Register> registers) {
+	public void setRegisters(ArrayList<Register> registers) {
 		this.registers = registers;
 	}
 
