@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
-encoding//src/util/Main.java=UTF-8
+encoding//src/model/Teacher.java=UTF-8
+encoding//test/model/CourseTest.java=UTF-8
+encoding//test/model/RegisterTest.java=UTF-8
+encoding//test/model/StudentTest.java=UTF-8
+encoding//test/model/VirtualSchoolTest.java=UTF-8

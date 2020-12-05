@@ -7,7 +7,7 @@ import customExceptions.NullEntityException;
 /**
  * The Class VirtualSchool.
  */
-public class VirtualSchool {
+public class VirtualSchool implements IPaths {
 
 	/** The name. */
 	private String name;
