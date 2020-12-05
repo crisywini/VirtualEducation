@@ -2,47 +2,108 @@ package model;
 
 import java.util.LinkedList;
 
+
+import model.util.BinaryTree;
+
 /**
  * The Class Course.
  */
-public class Course {
+public class Course implements ICourse {
 
-	/** The director. */
-	private Director director;
-	
-	/** The subjects. */
-	private LinkedList<Subject> subjects;
-	
+	/** The teacher. */
+	private Teacher teacher;
+
+	/** The registers. */
+	private LinkedList<Register> registers;
+
+	/** The students. */
+	private BinaryTree<Person> students;
+
 	/** The id. */
 	private String id;
+
+	/** The name. */
+	private String name;
+
+	/** The description. */
+	private String description;
+
+	/** The school. */
+	private VirtualSchool school;
 
 	/**
 	 * Instantiates a new course.
 	 *
-	 * @param id the id
-	 * @param directo the directo
+	 * @param id          the id
+	 * @param name        the name
+	 * @param description the description
+	 * @param teacher     the teacher
+	 * @param students    the students
+	 * @param school      the school
 	 */
-	public Course(String id, Director directo) {
+	public Course(String id, String name, String description, Teacher teacher, BinaryTree<Person> students,
+			VirtualSchool school) {
+		registers = new LinkedList<Register>();
+		this.students = students;
 		this.id = id;
-		subjects = new LinkedList<Subject>();
+		this.name = name;
+		this.description = description;
+		this.teacher = teacher;
+		this.school = school;
 	}
 
 	/**
-	 * Gets the subjects.
+	 * Gets the school.
 	 *
-	 * @return the subjects
+	 * @return the school
 	 */
-	public LinkedList<Subject> getSubjects() {
-		return subjects;
+	public VirtualSchool getSchool() {
+		return school;
 	}
 
 	/**
-	 * Sets the subjects.
+	 * Sets the school.
 	 *
-	 * @param subjects the new subjects
+	 * @param school the new school
 	 */
-	public void setSubjects(LinkedList<Subject> subjects) {
-		this.subjects = subjects;
+	public void setSchool(VirtualSchool school) {
+		this.school = school;
+	}
+
+	/**
+	 * Gets the teacher.
+	 *
+	 * @return the teacher
+	 */
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	/**
+	 * Sets the teacher.
+	 *
+	 * @param teacher the new teacher
+	 */
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	/**
+	 * Gets the registers.
+	 *
+	 * @return the registers
+	 */
+	public LinkedList<Register> getRegisters() {
+		return registers;
+	}
+
+	/**
+	 * Sets the registers.
+	 *
+	 * @param registers the new registers
+	 */
+	public void setRegisters(LinkedList<Register> registers) {
+		this.registers = registers;
 	}
 
 	/**
@@ -62,34 +123,59 @@ public class Course {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
 
 	/**
-	 * Gets the director.
+	 * Gets the name.
 	 *
-	 * @return the director
+	 * @return the name
 	 */
-	public Director getDirector() {
-		return director;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * Sets the director.
+	 * Sets the name.
 	 *
-	 * @param director the new director
+	 * @param name the new name
 	 */
-	public void setDirector(Director director) {
-		this.director = director;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
-	 * To string.
+	 * Gets the description.
 	 *
-	 * @return the string
+	 * @return the description
 	 */
-	@Override
-	public String toString() {
-		return "Course [subjects=" + subjects + ", id=" + id + "]";
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * Gets the students.
+	 *
+	 * @return the students
+	 */
+	public BinaryTree<Person> getStudents() {
+		return students;
+	}
+
+	/**
+	 * Sets the students.
+	 *
+	 * @param students the new students
+	 */
+	public void setStudents(BinaryTree<Person> students) {
+		this.students = students;
+	}
+
+	/**
+	 * Sets the description.
+	 *
+	 * @param description the new description
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	/**

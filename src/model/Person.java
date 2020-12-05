@@ -1,6 +1,5 @@
 package model;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Person.
  */
@@ -132,6 +131,12 @@ public abstract class Person implements Comparable<Person>{
 		return true;
 	}
 
+	/**
+	 * Compare to.
+	 *
+	 * @param o the o
+	 * @return the int
+	 */
 	@Override
 	public int compareTo(Person o) {
 		int comparation = 0;
@@ -146,6 +151,4 @@ public abstract class Person implements Comparable<Person>{
 		
 		return comparation;
 	}
-
-
 }

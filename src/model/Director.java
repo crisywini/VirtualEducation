@@ -1,31 +1,43 @@
 package model;
 
+/**
+ * The Class Director.
+ */
 public class Director extends Employee {
+
+	/** The school. */
+	private VirtualSchool school;
+
 	/**
-	 * 
-	 * @param code
-	 * @param name
-	 * @param lastName
-	 * @param salary
+	 * Instantiates a new director.
+	 *
+	 * @param code     the code
+	 * @param name     the name
+	 * @param lastName the last name
+	 * @param salary   the salary
+	 * @param school   the school
 	 */
-	private Course course;
-	public Director(String code, String name, String lastName, double salary, Course course) {
+	public Director(String code, String name, String lastName, double salary, VirtualSchool school) {
 		super(code, name, lastName, salary);
-		this.course = course;
-	}
-	
-	public Director() {
-		super();
+		this.school = school;
 	}
 
-	public Course getCourse() {
-		return course;
+	/**
+	 * Gets the school.
+	 *
+	 * @return the school
+	 */
+	public VirtualSchool getSchool() {
+		return school;
 	}
-	public void setCourse(Course course) {
-		this.course = course;
+
+	/**
+	 * Sets the school.
+	 *
+	 * @param school the new school
+	 */
+	public void setSchool(VirtualSchool school) {
+		this.school = school;
 	}
-	@Override
-	public String toString() {
-		return "Director [course=" + course + "]";
-	}
+
 }
