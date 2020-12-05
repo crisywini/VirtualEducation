@@ -6,29 +6,29 @@ import java.util.ArrayList;
  * The Class Register.
  */
 public class Register {
-	
+
 	/** The id. */
 	private String id;
-	
+
 	/** The student. */
 	private Student student;
-	
+
 	/** The courses. */
 	private ArrayList<Course> courses;
 
 	/**
 	 * Instantiates a new register.
 	 *
-	 * @param id the id
+	 * @param id      the id
 	 * @param student the student
 	 * @param courses the courses
 	 */
-	public Register(String id, Student student, ArrayList<Course> courses) {
+	public Register(String id, Student student) {
 		this.id = id;
 		this.student = student;
-		this.courses = courses;
-	}
 
+		courses = new ArrayList<Course>();
+	}
 
 	/**
 	 * Gets the id.
@@ -119,4 +119,10 @@ public class Register {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Register [student=" + student + "]";
+	}
+	
 }

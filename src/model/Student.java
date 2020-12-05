@@ -74,9 +74,9 @@ public class Student extends Person {
 		String nameOther = o.getName();
 		int auxiliarComparation = nameOther.compareTo(getName());
 		if (auxiliarComparation < 0) {
-			comparation = -1;
-		} else if (auxiliarComparation > 0) {
 			comparation = 1;
+		} else if (auxiliarComparation > 0) {
+			comparation = -1;
 		}
 		return comparation;
 	}

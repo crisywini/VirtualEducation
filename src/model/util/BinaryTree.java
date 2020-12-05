@@ -56,17 +56,15 @@ public class BinaryTree<T extends Comparable<T>> {
 		}
 		if (current.value.compareTo(value) == 1) {
 			current.left = add(current.left, value);
-		} else if (current.value.compareTo(value) == -1) {
+		} else if (current.value.compareTo(value) == -1 || current.value.compareTo(value) == 0) {
 			current.right = add(current.right, value);
 		}
 		return current;
 	}
 
-	
 	public void add(T value) {
 		add(root, value);
 	}
-
 
 	private void doPreorder(ArrayList<T> elements, Node<T> current) {
 		if (current != null) {
@@ -84,7 +82,6 @@ public class BinaryTree<T extends Comparable<T>> {
 		}
 	}
 
-	
 	private void doPostOrder(ArrayList<T> elements, Node<T> current) {
 		if (current != null) {
 			doPostOrder(elements, current.left);

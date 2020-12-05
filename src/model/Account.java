@@ -7,28 +7,33 @@ import customExceptions.NotEnoughMoneyException;
 /**
  * The Class Account.
  */
-public abstract class Account implements IAccount, Comparable<Account>{
+public abstract class Account implements IAccount, Comparable<Account> {
 
 	/** The person. */
 	private Person person;
-	
+
 	/** The id. */
 	private String id;
-	
+
 	/** The amount. */
 	private double amount;
-	
+
 	/**
 	 * Instantiates a new account.
 	 *
 	 * @param person the person
-	 * @param id the id
+	 * @param id     the id
 	 * @param amount the amount
 	 */
 	public Account(Person person, String id, double amount) {
 		this.person = person;
 		this.id = id;
 		this.amount = amount;
+	}
+
+	public Account(String id, double ammount) {
+		this.id = id;
+		this.amount = ammount;
 	}
 
 	/**
@@ -84,7 +89,7 @@ public abstract class Account implements IAccount, Comparable<Account>{
 	public void setPerson(Person person) {
 		this.person = person;
 	}
-	
+
 	/**
 	 * Compare to.
 	 *
@@ -96,14 +101,14 @@ public abstract class Account implements IAccount, Comparable<Account>{
 		int comparation = 0;
 		String idOther = o.getId();
 		int auxComparation = id.compareTo(idOther);
-		if(auxComparation<0) {
+		if (auxComparation < 0) {
 			comparation = -1;
-		}else if(auxComparation>0) {
+		} else if (auxComparation > 0) {
 			comparation = 1;
 		}
 		return comparation;
 	}
-	
+
 	/**
 	 * Withdraw money.
 	 *
@@ -112,9 +117,9 @@ public abstract class Account implements IAccount, Comparable<Account>{
 	 */
 	@Override
 	public void withdrawMoney(double amount) throws NotEnoughMoneyException {
-		double res = this.amount-amount;
-		if(res <0) {
-			throw new NotEnoughMoneyException("The amount in your account is less than: "+amount+"$");
+		double res = this.amount - amount;
+		if (res < 0) {
+			throw new NotEnoughMoneyException("The amount in your account is less than: " + amount + "$");
 		}
 		setAmount(res);
 	}
@@ -126,11 +131,11 @@ public abstract class Account implements IAccount, Comparable<Account>{
 	 * @throws AmountInputException the amount input exception
 	 */
 	@Override
-	public void depositMoney(double amount) throws AmountInputException{
-		if(amount<=0) {
+	public void depositMoney(double amount) throws AmountInputException {
+		if (amount <= 0) {
 			throw new AmountInputException("The money input is wrong");
 		}
-		setAmount(getAmount()+amount);
+		setAmount(getAmount() + amount);
 	}
 
 	/**
@@ -168,5 +173,5 @@ public abstract class Account implements IAccount, Comparable<Account>{
 			return false;
 		return true;
 	}
-	
+
 }

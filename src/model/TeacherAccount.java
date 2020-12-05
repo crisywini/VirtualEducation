@@ -15,4 +15,9 @@ public class TeacherAccount extends Account {
 	public TeacherAccount(Person person, String id, double amount) {
 		super(person, id, amount);
 	}
+
+	public TeacherAccount(String id, double ammount) {
+		super(id, ammount);
+	}
+
 }

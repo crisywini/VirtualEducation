@@ -15,4 +15,9 @@ public class StudentAccount extends Account {
 	public StudentAccount(Person person, String id, double amount) {
 		super(person, id, amount);
 	}
+
+	public StudentAccount(String id, double ammount) {
+		super(id, ammount);
+	}
+	
 }
