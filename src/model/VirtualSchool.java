@@ -37,6 +37,10 @@ public class VirtualSchool {
 		this.name = name;
 	}
 
+	public void loadData() {
+
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -86,8 +90,10 @@ public class VirtualSchool {
 		}
 		courses.add(new Course(id, name, description, teacher, this));
 	}
+
 	public void addCourse(String id, String name, String description) throws NullEntityException {
 		if (courses.size() > 0) {
+			sortCourses();
 			int index = searchCourse(id);
 			if (index != -1) {
 				throw new NullEntityException("The course with id: " + id + " already exists!");
@@ -96,23 +102,203 @@ public class VirtualSchool {
 		courses.add(new Course(id, name, description, null, this));
 	}
 
-	
+	public void removeCourse(String id) throws NullEntityException {
+		sortCourses();
+		int index = searchCourse(id);
+		if (index == -1) {
+			throw new NullEntityException("The course with id: " + id + " does not exists!");
+		}
+		courses.remove(index);
+	}
+
+	public void sortCourses() {
+		int j;
+		Course course;
+		for (int i = 1; i < courses.size(); i++) {
+			course = courses.get(i);
+			j = i - 1;
+			while ((j >= 0) && (course.compareTo(courses.get(j)) == -1)) {
+				courses.set(j + 1, courses.get(j));
+				j--;
+			}
+			courses.set(j + 1, course);
+		}
+	}
+
 	private int searchCourse(String idCourse, int low, int high) {
 		int mid = (low + high) / 2;
 		if (high < low) {
 			return -1;
 		}
-	
 		if (courses.get(mid).getId().equals(idCourse)) {
 			return mid;
-		} else if (Integer.parseInt(idCourse)< Integer.parseInt(courses.get(mid).getId())) {
+		} else if (Integer.parseInt(idCourse) < Integer.parseInt(courses.get(mid).getId())) {
 			return searchCourse(idCourse, low, mid - 1);
 		}
 		return searchCourse(idCourse, mid + 1, high);
 	}
 
 	public int searchCourse(String idCourse) {
-		return searchCourse(idCourse, 0, courses.size()-1);
+		return searchCourse(idCourse, 0, courses.size() - 1);
+	}
+	// -----------------------------------------------------------
+
+	public void addTeacher(String code, String name, String lastName, String password, double salary) throws NullEntityException {
+		if (teachers.size() > 0) {
+			sortTeachers();
+			int index = searchTeacher(code);
+			if (index != -1) {
+				throw new NullEntityException("The teacher with id: " + code + " already exists!");
+			}
+		}
+		TeacherAccount account = new TeacherAccount(code, 0);
+		teachers.add(new Teacher(code, name, lastName, password, salary, account, this));
 	}
 
+	public void sortTeachers() {
+		int size = teachers.size();
+		Teacher teacher = null;
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size - i - 1; j++) {
+				int id1 = Integer.parseInt(teachers.get(j).getCode());
+				int id2 = Integer.parseInt(teachers.get(j).getCode());
+				if (id1 > id2) {
+					teacher = teachers.get(j);
+					teachers.set(j + 1, teachers.get(j));
+					teachers.set(j, teacher);
+				}
+			}
+		}
+	}
+
+	private int searchTeacher(String codeTeacher, int low, int high) {
+		int mid = (low + high) / 2;
+		if (high < low) {
+			return -1;
+		}
+		if (teachers.get(mid).getCode().equals(codeTeacher)) {
+			return mid;
+		} else if (Integer.parseInt(codeTeacher) < Integer.parseInt(teachers.get(mid).getCode())) {
+			return searchCourse(codeTeacher, low, mid - 1);
+		}
+		return searchCourse(codeTeacher, mid + 1, high);
+	}
+
+	public void removeTeacher(String code) throws NullEntityException {
+		sortTeachers();
+		int index = searchTeacher(code);
+		if (index == -1) {
+			throw new NullEntityException("The teacher with code: " + code + " does not exists!");
+		}
+		teachers.remove(index);
+	}
+
+	public int searchTeacher(String code) {
+		return searchTeacher(code, 0, teachers.size() - 1);
+	}
+	//----------------------------------------
+	public void addStudents(String code, String name, String lastName, String password) throws NullEntityException {
+		if (students.size() > 0) {
+			sortStudents();
+			int index = searchStudent(code);
+			if (index != -1) {
+				throw new NullEntityException("The student with id: " + code + " already exists!");
+			}
+		}
+		StudentAccount account = new StudentAccount(code, 0);
+		students.add(new Student(code, name, lastName, password, account, this));
+	}
+	public void sortStudents() {
+		int size = students.size();
+		Student student = null;
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size - i - 1; j++) {
+				int id1 = Integer.parseInt(students.get(j).getCode());
+				int id2 = Integer.parseInt(students.get(j).getCode());
+				if (id1 > id2) {
+					student = students.get(j);
+					students.set(j + 1, students.get(j));
+					students.set(j, student);
+				}
+			}
+		}
+	}
+
+	private int searchStudent(String codeStudent, int low, int high) {
+		int mid = (low + high) / 2;
+		if (high < low) {
+			return -1;
+		}
+		if (students.get(mid).getCode().equals(codeStudent)) {
+			return mid;
+		} else if (Integer.parseInt(codeStudent) < Integer.parseInt(students.get(mid).getCode())) {
+			return searchCourse(codeStudent, low, mid - 1);
+		}
+		return searchCourse(codeStudent, mid + 1, high);
+	}
+
+	public void removeStudent(String code) throws NullEntityException {
+		sortStudents();
+		int index = searchStudent(code);
+		if (index == -1) {
+			throw new NullEntityException("The student with code: " + code + " does not exists!");
+		}
+		students.remove(index);
+	}
+
+	public int searchStudent(String code) {
+		return searchStudent(code, 0, teachers.size() - 1);
+	}
+	//-------------------------------------------------------------------
+	public void addDirector(String code, String name, String lastName, String password, double salary) throws NullEntityException {
+		if (directors.size() > 0) {
+			sortDirectors();
+			int index = searchDirector(code);
+			if (index != -1) {
+				throw new NullEntityException("The director with id: " + code + " already exists!");
+			}
+		}
+		directors.add(new Director(code, name, lastName, password, salary, this));
+	}
+	public void sortDirectors() {
+		int size = directors.size();
+		Director director = null;
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size - i - 1; j++) {
+				int id1 = Integer.parseInt(directors.get(j).getCode());
+				int id2 = Integer.parseInt(directors.get(j).getCode());
+				if (id1 > id2) {
+					director = directors.get(j);
+					directors.set(j + 1, directors.get(j));
+					directors.set(j, director);
+				}
+			}
+		}
+	}
+
+	private int searchDirector(String codeDirector, int low, int high) {
+		int mid = (low + high) / 2;
+		if (high < low) {
+			return -1;
+		}
+		if (directors.get(mid).getCode().equals(codeDirector)) {
+			return mid;
+		} else if (Integer.parseInt(codeDirector) < Integer.parseInt(directors.get(mid).getCode())) {
+			return searchCourse(codeDirector, low, mid - 1);
+		}
+		return searchCourse(codeDirector, mid + 1, high);
+	}
+
+	public void removeDirector(String code) throws NullEntityException {
+		sortStudents();
+		int index = searchDirector(code);
+		if (index == -1) {
+			throw new NullEntityException("The director with code: " + code + " does not exists!");
+		}
+		directors.remove(index);
+	}
+
+	public int searchDirector(String code) {
+		return searchDirector(code, 0, teachers.size() - 1);
+	}
 }
