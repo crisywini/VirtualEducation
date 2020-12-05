@@ -143,7 +143,8 @@ public class VirtualSchool {
 	}
 	// -----------------------------------------------------------
 
-	public void addTeacher(String code, String name, String lastName, String password, double salary) throws NullEntityException {
+	public void addTeacher(String code, String name, String lastName, String password, double salary)
+			throws NullEntityException {
 		if (teachers.size() > 0) {
 			sortTeachers();
 			int index = searchTeacher(code);
@@ -156,32 +157,30 @@ public class VirtualSchool {
 	}
 
 	public void sortTeachers() {
-		int size = teachers.size();
-		Teacher teacher = null;
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size - i - 1; j++) {
-				int id1 = Integer.parseInt(teachers.get(j).getCode());
-				int id2 = Integer.parseInt(teachers.get(j).getCode());
-				if (id1 > id2) {
-					teacher = teachers.get(j);
-					teachers.set(j + 1, teachers.get(j));
-					teachers.set(j, teacher);
-				}
+		int j;
+		Teacher teacher;
+		for (int i = 1; i < teachers.size(); i++) {
+			teacher = teachers.get(i);
+			j = i - 1;
+			while ((j >= 0) && (teacher.compareTo(teachers.get(j)) == -1)) {
+				teachers.set(j + 1, teachers.get(j));
+				j--;
 			}
+			teachers.set(j + 1, teacher);
 		}
 	}
 
 	private int searchTeacher(String codeTeacher, int low, int high) {
-		int mid = (low + high) / 2;
+		int mid = low + (high - low) / 2;
 		if (high < low) {
 			return -1;
 		}
 		if (teachers.get(mid).getCode().equals(codeTeacher)) {
 			return mid;
 		} else if (Integer.parseInt(codeTeacher) < Integer.parseInt(teachers.get(mid).getCode())) {
-			return searchCourse(codeTeacher, low, mid - 1);
+			return searchTeacher(codeTeacher, low, mid - 1);
 		}
-		return searchCourse(codeTeacher, mid + 1, high);
+		return searchTeacher(codeTeacher, mid + 1, high);
 	}
 
 	public void removeTeacher(String code) throws NullEntityException {
@@ -196,7 +195,8 @@ public class VirtualSchool {
 	public int searchTeacher(String code) {
 		return searchTeacher(code, 0, teachers.size() - 1);
 	}
-	//----------------------------------------
+
+	// ----------------------------------------
 	public void addStudents(String code, String name, String lastName, String password) throws NullEntityException {
 		if (students.size() > 0) {
 			sortStudents();
@@ -208,33 +208,34 @@ public class VirtualSchool {
 		StudentAccount account = new StudentAccount(code, 0);
 		students.add(new Student(code, name, lastName, password, account, this));
 	}
+
 	public void sortStudents() {
-		int size = students.size();
-		Student student = null;
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size - i - 1; j++) {
-				int id1 = Integer.parseInt(students.get(j).getCode());
-				int id2 = Integer.parseInt(students.get(j).getCode());
-				if (id1 > id2) {
-					student = students.get(j);
-					students.set(j + 1, students.get(j));
-					students.set(j, student);
-				}
+
+		PersonComparator comparator = new PersonComparator();
+		int j;
+		Student student;
+		for (int i = 1; i < students.size(); i++) {
+			student = students.get(i);
+			j = i - 1;
+			while ((j >= 0) && (comparator.compare(student, students.get(j)) == -1)) {
+				students.set(j + 1, students.get(j));
+				j--;
 			}
+			students.set(j + 1, student);
 		}
 	}
 
 	private int searchStudent(String codeStudent, int low, int high) {
-		int mid = (low + high) / 2;
+		int mid = low + (high - low) / 2;
 		if (high < low) {
 			return -1;
 		}
 		if (students.get(mid).getCode().equals(codeStudent)) {
 			return mid;
 		} else if (Integer.parseInt(codeStudent) < Integer.parseInt(students.get(mid).getCode())) {
-			return searchCourse(codeStudent, low, mid - 1);
+			return searchStudent(codeStudent, low, mid - 1);
 		}
-		return searchCourse(codeStudent, mid + 1, high);
+		return searchStudent(codeStudent, mid + 1, high);
 	}
 
 	public void removeStudent(String code) throws NullEntityException {
@@ -247,10 +248,12 @@ public class VirtualSchool {
 	}
 
 	public int searchStudent(String code) {
-		return searchStudent(code, 0, teachers.size() - 1);
+		return searchStudent(code, 0, students.size() - 1);
 	}
-	//-------------------------------------------------------------------
-	public void addDirector(String code, String name, String lastName, String password, double salary) throws NullEntityException {
+
+	// -------------------------------------------------------------------
+	public void addDirector(String code, String name, String lastName, String password, double salary)
+			throws NullEntityException {
 		if (directors.size() > 0) {
 			sortDirectors();
 			int index = searchDirector(code);
@@ -260,37 +263,36 @@ public class VirtualSchool {
 		}
 		directors.add(new Director(code, name, lastName, password, salary, this));
 	}
+
 	public void sortDirectors() {
 		int size = directors.size();
 		Director director = null;
 		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size - i - 1; j++) {
-				int id1 = Integer.parseInt(directors.get(j).getCode());
-				int id2 = Integer.parseInt(directors.get(j).getCode());
-				if (id1 > id2) {
+			for (int j = 0; j < size - 1; j++) {
+				if (directors.get(j).compareTo(directors.get(j + 1)) == 1) {
 					director = directors.get(j);
-					directors.set(j + 1, directors.get(j));
-					directors.set(j, director);
+					directors.set(j, directors.get(j + 1));
+					directors.set(j + 1, director);
 				}
 			}
 		}
 	}
 
 	private int searchDirector(String codeDirector, int low, int high) {
-		int mid = (low + high) / 2;
+		int mid = low + (high - low) / 2;
 		if (high < low) {
 			return -1;
 		}
 		if (directors.get(mid).getCode().equals(codeDirector)) {
 			return mid;
 		} else if (Integer.parseInt(codeDirector) < Integer.parseInt(directors.get(mid).getCode())) {
-			return searchCourse(codeDirector, low, mid - 1);
+			return searchDirector(codeDirector, low, mid - 1);
 		}
-		return searchCourse(codeDirector, mid + 1, high);
+		return searchDirector(codeDirector, mid + 1, high);
 	}
 
 	public void removeDirector(String code) throws NullEntityException {
-		sortStudents();
+		sortDirectors();
 		int index = searchDirector(code);
 		if (index == -1) {
 			throw new NullEntityException("The director with code: " + code + " does not exists!");
@@ -299,6 +301,6 @@ public class VirtualSchool {
 	}
 
 	public int searchDirector(String code) {
-		return searchDirector(code, 0, teachers.size() - 1);
+		return searchDirector(code, 0, directors.size() - 1);
 	}
 }
