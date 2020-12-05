@@ -2,6 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
+import customExceptions.EntityRepeatedException;
+import customExceptions.NullEntityException;
+
 /**
  * The Class Teacher.
  */
@@ -32,6 +35,107 @@ public class Teacher extends Employee {
 		this.account = account;
 		this.school = school;
 		courses = new ArrayList<Course>();
+	}
+
+	public void addCourse(String id) throws NullEntityException, EntityRepeatedException {
+
+		int index = school.searchCourse(id);
+		if (index == -1) {
+			throw new NullEntityException("The course with id: " + id + " does not exists");
+		}
+		int index2 = searchCourse(id);
+		if(index2 != -1) {
+			throw new EntityRepeatedException("The course with id: " + id + " already exists!");
+		}
+		Course course = school.getCourses().get(index);
+		course.setTeacher(this);
+		courses.add(course);
+	}
+
+	/**
+	 * Removes the course.
+	 *
+	 * @param id the id
+	 * @throws NullEntityException the null entity exception
+	 */
+	public void removeCourse(String id) throws NullEntityException {
+		sortBySelection();
+		int index = searchCourse(id);
+		if (index == -1) {
+			throw new NullEntityException("The course with id: " + id + " does not exists!");
+		}
+		Course course = courses.get(index);
+		course.setTeacher(null);
+		courses.remove(index);
+	}
+/*
+	void sort(int arr[]) {
+		int n = arr.length;
+
+		// One by one move boundary of unsorted subarray
+		for (int i = 0; i < n - 1; i++) {
+			// Find the minimum element in unsorted array
+			int min_idx = i;
+			for (int j = i + 1; j < n; j++)
+				if (arr[j] < arr[min_idx])
+					min_idx = j;
+
+			// Swap the found minimum element with the first
+			// element
+			int temp = arr[min_idx];
+			arr[min_idx] = arr[i];
+			arr[i] = temp;
+		}
+	}
+*/
+	public void sortBySelection() {
+		int size = courses.size();
+		for (int i = 0; i < size; i++) {
+			int minIdIndex = i;
+			for (int j = i + 1; j < size - 1; j++) {
+				int id1 = Integer.parseInt(courses.get(j).getId());
+				int id2 = Integer.parseInt(courses.get(minIdIndex).getId());
+				if (id1 < id2) {
+					minIdIndex = j;
+				}
+			}
+			Course temporal = courses.get(minIdIndex);
+			courses.set(minIdIndex, courses.get(i));
+			courses.set(i, temporal);
+		}
+	}
+
+	/**
+	 * Search course.
+	 *
+	 * @param idCourse the id course
+	 * @param low      the low
+	 * @param high     the high
+	 * @return the int
+	 */
+	private int searchCourse(String idCourse, int low, int high) {
+		int mid = low + (high - low) / 2;
+		if (high < low) {
+			return -1;
+		}
+		int idAux = Integer.parseInt(courses.get(mid).getId());
+		int idCourseAux = Integer.parseInt(idCourse);
+		if (idAux == idCourseAux) {
+			return mid;
+		} else if (idCourseAux < idAux) {
+			return searchCourse(idCourse, low, mid - 1);
+		}
+		return searchCourse(idCourse, mid + 1, high);
+	}
+
+	/**
+	 * Search course.
+	 *
+	 * @param idCourse the id course
+	 * @return the int
+	 */
+	public int searchCourse(String idCourse) {
+		return searchCourse(idCourse, 0, courses.size()-1);
 	}
 
 	/**

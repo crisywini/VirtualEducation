@@ -47,6 +47,10 @@ public class Register {
 		if (index == -1) {
 			throw new NullEntityException("The course wiuth id: " + id + " does not exists");
 		}
+		index = searchCourse(id);
+		if(index != -1) {
+			throw new EntityRepeatedException("The course with id: "+id+ " already exists!");
+		}
 		Course course = school.getCourses().get(index);
 		courses.add(course);
 		course.addRegister(getId(), student);

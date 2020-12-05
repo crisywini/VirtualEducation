@@ -86,7 +86,17 @@ public class VirtualSchool {
 		}
 		courses.add(new Course(id, name, description, teacher, this));
 	}
+	public void addCourse(String id, String name, String description) throws NullEntityException {
+		if (courses.size() > 0) {
+			int index = searchCourse(id);
+			if (index != -1) {
+				throw new NullEntityException("The course with id: " + id + " already exists!");
+			}
+		}
+		courses.add(new Course(id, name, description, null, this));
+	}
 
+	
 	private int searchCourse(String idCourse, int low, int high) {
 		int mid = (low + high) / 2;
 		if (high < low) {
