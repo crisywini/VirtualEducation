@@ -12,6 +12,7 @@ public class Student extends Person {
 
 	/** The account. */
 	private StudentAccount account;
+	private VirtualSchool school;
 
 	/**
 	 * Instantiates a new student.
@@ -21,9 +22,19 @@ public class Student extends Person {
 	 * @param lastName the last name
 	 * @param account  the account
 	 */
-	public Student(String code, String name, String lastName, String password, StudentAccount account) {
+	public Student(String code, String name, String lastName, String password, StudentAccount account,
+			VirtualSchool school) {
 		super(code, name, lastName, password);
 		this.registers = new ArrayList<Register>();
+		this.school = school;
+	}
+
+	public VirtualSchool getSchool() {
+		return school;
+	}
+
+	public void setSchool(VirtualSchool school) {
+		this.school = school;
 	}
 
 	/**

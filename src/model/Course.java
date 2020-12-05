@@ -11,7 +11,7 @@ import model.util.BinaryTree;
 /**
  * The Class Course.
  */
-public class Course implements ICourse {
+public class Course implements ICourse, Comparable<Course> {
 
 	/** The teacher. */
 	private Teacher teacher;
@@ -58,11 +58,11 @@ public class Course implements ICourse {
 	/**
 	 * Instantiates a new course.
 	 *
-	 * @param id the id
-	 * @param name the name
+	 * @param id          the id
+	 * @param name        the name
 	 * @param description the description
-	 * @param teacher the teacher
-	 * @param school the school
+	 * @param teacher     the teacher
+	 * @param school      the school
 	 */
 	public Course(String id, String name, String description, Teacher teacher, VirtualSchool school) {
 		registers = new ArrayList<Register>();
@@ -76,7 +76,7 @@ public class Course implements ICourse {
 	/**
 	 * Adds the register.
 	 *
-	 * @param id the id
+	 * @param id      the id
 	 * @param student the student
 	 * @throws EntityRepeatedException the entity repeated exception
 	 */
@@ -112,16 +112,16 @@ public class Course implements ICourse {
 	 * @return the int
 	 */
 	public int searchRegister(String registerId) {
-		return searchRegister(registers, registerId, 0, registers.size());
+		return searchRegister(registers, registerId, 0, registers.size()-1);
 	}
 
 	/**
 	 * Search register.
 	 *
-	 * @param registers the registers
+	 * @param registers  the registers
 	 * @param registerId the register id
-	 * @param low the low
-	 * @param high the high
+	 * @param low        the low
+	 * @param high       the high
 	 * @return the int
 	 */
 	private int searchRegister(ArrayList<Register> registers, String registerId, int low, int high) {
@@ -319,4 +319,23 @@ public class Course implements ICourse {
 			return false;
 		return true;
 	}
+
+	@Override
+	public int compareTo(Course o) {
+		int id = Integer.parseInt(this.id);
+		int idAux = Integer.parseInt(o.getId());
+		int comparation = 0;
+		if (id < idAux) {
+			comparation = -1;
+		} else if (id > idAux) {
+			comparation = 1;
+		}
+		return comparation;
+	}
+
+	@Override
+	public String toString() {
+		return "Course [id=" + id + "]";
+	}
+	
 }

@@ -2,6 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
+import customExceptions.EntityRepeatedException;
+import customExceptions.NullEntityException;
+
 /**
  * The Class Register.
  */
@@ -21,13 +24,94 @@ public class Register {
 	 *
 	 * @param id      the id
 	 * @param student the student
-	 * @param courses the courses
 	 */
 	public Register(String id, Student student) {
 		this.id = id;
 		this.student = student;
 
 		courses = new ArrayList<Course>();
+	}
+
+	/**
+	 * Adds the course.
+	 *
+	 * @param id the id
+	 * @throws NullEntityException     the null entity exception
+	 * @throws EntityRepeatedException the entity repeated exception
+	 */
+	public void addCourse(String id) throws NullEntityException, EntityRepeatedException {
+		VirtualSchool school = student.getSchool();
+		int index = school.searchCourse(id);
+		if (index == -1) {
+			throw new NullEntityException("The course wiuth id: " + id + " does not exists");
+		}
+		Course course = school.getCourses().get(index);
+		courses.add(course);
+		course.addRegister(getId(), student);
+	}
+
+	/**
+	 * Removes the course.
+	 *
+	 * @param id the id
+	 * @throws NullEntityException the null entity exception
+	 */
+	public void removeCourse(String id) throws NullEntityException {
+		sortByInsertion();
+		int index = searchCourse(id);
+		if (index == -1) {
+			throw new NullEntityException("The course with id: " + id + " does not exists!");
+		}
+		Course course = courses.get(index);
+		course.removeRegister(getId());
+		courses.remove(index);
+	}
+
+	/**
+	 * Search course.
+	 *
+	 * @param idCourse the id course
+	 * @param low      the low
+	 * @param high     the high
+	 * @return the int
+	 */
+	private int searchCourse(String idCourse, int low, int high) {
+		int mid = (low + high) / 2;
+		if (high < low) {
+			return -1;
+		}
+		int idAux = Integer.parseInt(courses.get(mid).getId());
+		int idCourseAux = Integer.parseInt(idCourse);
+		if (idAux == idCourseAux) {
+			return mid;
+		} else if (idCourseAux < idAux) {
+			return searchCourse(idCourse, low, mid - 1);
+		}
+		return searchCourse(idCourse, mid + 1, high);
+	}
+
+	/**
+	 * Search course.
+	 *
+	 * @param idCourse the id course
+	 * @return the int
+	 */
+	public int searchCourse(String idCourse) {
+		return searchCourse(idCourse, 0, courses.size() - 1);
+	}
+
+	public void sortByInsertion() {
+		int j;
+		Course course;
+		for (int i = 1; i < courses.size(); i++) {
+			course = courses.get(i);
+			j = i - 1;
+			while ((j >= 0) && (course.compareTo(courses.get(j)) == -1)) {
+				courses.set(j + 1, courses.get(j));
+				j--;
+			}
+			courses.set(j + 1, course);
+		}
 	}
 
 	/**
@@ -120,9 +204,14 @@ public class Register {
 		return true;
 	}
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public String toString() {
 		return "Register [student=" + student + "]";
 	}
-	
+
 }
