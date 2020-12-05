@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import customExceptions.EntityRepeatedException;
 import customExceptions.NullEntityException;
@@ -15,6 +16,7 @@ public class Register {
 
 	/** The student. */
 	private Student student;
+	private Date date;
 
 	/** The courses. */
 	private ArrayList<Course> courses;
@@ -28,7 +30,7 @@ public class Register {
 	public Register(String id, Student student) {
 		this.id = id;
 		this.student = student;
-
+		date = new Date();
 		courses = new ArrayList<Course>();
 	}
 
@@ -76,7 +78,7 @@ public class Register {
 	 * @return the int
 	 */
 	private int searchCourse(String idCourse, int low, int high) {
-		int mid = (low + high) / 2;
+		int mid =  low+ (high-low) / 2;
 		if (high < low) {
 			return -1;
 		}
@@ -97,7 +99,7 @@ public class Register {
 	 * @return the int
 	 */
 	public int searchCourse(String idCourse) {
-		return searchCourse(idCourse, 0, courses.size() - 1);
+		return searchCourse(idCourse, 0, courses.size());
 	}
 
 	public void sortByInsertion() {
@@ -112,6 +114,14 @@ public class Register {
 			}
 			courses.set(j + 1, course);
 		}
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	/**
@@ -211,7 +221,7 @@ public class Register {
 	 */
 	@Override
 	public String toString() {
-		return "Register [student=" + student + "]";
+		return "Register [id=" + id + "]";
 	}
 
 }

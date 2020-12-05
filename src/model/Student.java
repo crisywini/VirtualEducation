@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+
 /**
  * The Class Student.
  */
@@ -27,6 +28,36 @@ public class Student extends Person {
 		super(code, name, lastName, password);
 		this.registers = new ArrayList<Register>();
 		this.school = school;
+	}
+
+	public void addRegister() {
+		int id = registers.size();
+		Register register = new Register(id + "", this);
+		registers.add(register);
+	}
+
+	public void removeRegister(String id) {
+		int index = searchRegister(id);
+		registers.remove(index);
+	}
+
+	private int searchRegister(String id, int low, int high) {
+		int mid = low +(high - low) / 2;
+		if (high < low) {
+			return -1;
+		}
+		int idRegisterAux = Integer.parseInt(id);
+		int idAux = Integer.parseInt(registers.get(mid).getId());
+		if (idAux == idRegisterAux) {
+			return mid;
+		} else if (idAux > idRegisterAux) {
+			return searchRegister(id, low, mid - 1);
+		}
+		return searchRegister(id, mid + 1, high);
+	}
+
+	public int searchRegister(String id) {
+		return searchRegister(id, 0, registers.size()-1);
 	}
 
 	public VirtualSchool getSchool() {
