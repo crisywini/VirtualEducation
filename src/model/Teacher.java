@@ -82,9 +82,12 @@ public class Teacher extends Employee {
 		ArrayList<Student> students = new ArrayList<Student>();
 		for (Course course : courses) {
 			course.initStudents();
-			ArrayList<Person> persons = course.getStudents().getInOrder();
-			for (Person person : persons) {
-				students.add((Student) person);
+			if (course.getRegisters().size() > 0) {
+
+				ArrayList<Person> persons = course.getStudents().getInOrder();
+				for (Person person : persons) {
+					students.add((Student) person);
+				}
 			}
 		}
 		StudentComparator comparator = new StudentComparator();
@@ -96,9 +99,11 @@ public class Teacher extends Employee {
 		ArrayList<Student> students = new ArrayList<Student>();
 		for (Course course : courses) {
 			course.initStudents();
-			ArrayList<Person> persons = course.getStudents().getInOrder();
-			for (Person person : persons) {
-				students.add((Student) person);
+			if (course.getRegisters().size() > 0) {
+				ArrayList<Person> persons = course.getStudents().getInOrder();
+				for (Person person : persons) {
+					students.add((Student) person);
+				}
 			}
 		}
 		Collections.sort(students);

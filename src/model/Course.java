@@ -112,7 +112,7 @@ public class Course implements ICourse, Comparable<Course> {
 	 * @return the int
 	 */
 	public int searchRegister(String registerId) {
-		return searchRegister(registers, registerId, 0, registers.size()-1);
+		return searchRegister(registers, registerId, 0, registers.size() - 1);
 	}
 
 	/**
@@ -144,7 +144,7 @@ public class Course implements ICourse, Comparable<Course> {
 	 */
 	public void initStudents() throws BinaryTreeCastException {
 		if (registers.size() == 0) {
-			throw new BinaryTreeCastException("The registers are empty so there are no students");
+			return;
 		}
 		int mid = registers.size() / 2;
 		Student root = registers.get(mid).getStudent();
@@ -337,5 +337,5 @@ public class Course implements ICourse, Comparable<Course> {
 	public String toString() {
 		return "Course [id=" + id + "]";
 	}
-	
+
 }

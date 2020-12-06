@@ -56,7 +56,12 @@ public class RegisterStudentController {
 	void addCourse(ActionEvent event) {
 		if (!codeTxt.getText().isEmpty()) {
 			try {
+//				int i = getLastController().getLastController().getMainController().getMain().getVirtualSchool()
+//						.searchCourse(codeTxt.getText());
 				register.addCourse(codeTxt.getText());
+//				Course course = getLastController().getLastController().getMainController().getMain().getVirtualSchool()
+//						.getCourses().get(i);
+//				course.addRegister(register.getId(), register.getStudent());
 				MainController.showAlert("Added the course: " + codeTxt.getText(), "INFORMATION", AlertType.WARNING);
 				codeTxt.setText("");
 			} catch (EntityRepeatedException e) {

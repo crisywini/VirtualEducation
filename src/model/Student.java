@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-
 /**
  * The Class Student.
  */
@@ -32,7 +31,7 @@ public class Student extends Person {
 
 	public void addRegister() {
 		int id = registers.size();
-		Register register = new Register(id + "", this);
+		Register register = new Register(id + "" + getCode(), this);
 		registers.add(register);
 	}
 
@@ -42,7 +41,7 @@ public class Student extends Person {
 	}
 
 	private int searchRegister(String id, int low, int high) {
-		int mid = low +(high - low) / 2;
+		int mid = low + (high - low) / 2;
 		if (high < low) {
 			return -1;
 		}
@@ -57,7 +56,7 @@ public class Student extends Person {
 	}
 
 	public int searchRegister(String id) {
-		return searchRegister(id, 0, registers.size()-1);
+		return searchRegister(id, 0, registers.size() - 1);
 	}
 
 	public VirtualSchool getSchool() {
@@ -111,17 +110,10 @@ public class Student extends Person {
 	 * @return the int
 	 */
 	/*
-	@Override
-	public int compareTo(Person o) {
-		int comparation = 0;
-		String nameOther = o.getName();
-		int auxiliarComparation = nameOther.compareTo(getName());
-		if (auxiliarComparation < 0) {
-			comparation = 1;
-		} else if (auxiliarComparation > 0) {
-			comparation = -1;
-		}
-		return comparation;
-	}
-	*/
+	 * @Override public int compareTo(Person o) { int comparation = 0; String
+	 * nameOther = o.getName(); int auxiliarComparation =
+	 * nameOther.compareTo(getName()); if (auxiliarComparation < 0) { comparation =
+	 * 1; } else if (auxiliarComparation > 0) { comparation = -1; } return
+	 * comparation; }
+	 */
 }
