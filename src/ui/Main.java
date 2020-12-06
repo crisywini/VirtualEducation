@@ -11,14 +11,28 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.VirtualSchool;
 
+/**
+ * The Class Main.
+ */
 public class Main extends Application {
 
+	/** The school. */
 	private final VirtualSchool school = new VirtualSchool("SAI");
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
 
+	/**
+	 * Start.
+	 *
+	 * @param primaryStage the primary stage
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		loadDefaultData();
@@ -37,6 +51,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * Load default data.
+	 */
 	public void loadDefaultData() {
 		try {
 			school.addTeacher("12234", "Carlos", "Samper", "root", 3500000);
@@ -60,6 +77,11 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * Gets the virtual school.
+	 *
+	 * @return the virtual school
+	 */
 	public VirtualSchool getVirtualSchool() {
 		return school;
 	}

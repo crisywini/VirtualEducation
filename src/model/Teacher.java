@@ -44,7 +44,7 @@ public class Teacher extends Employee {
 	 * Adds the course.
 	 *
 	 * @param id the id
-	 * @throws NullEntityException the null entity exception
+	 * @throws NullEntityException     the null entity exception
 	 * @throws EntityRepeatedException the entity repeated exception
 	 */
 	public void addCourse(String id) throws NullEntityException, EntityRepeatedException {
@@ -60,6 +60,29 @@ public class Teacher extends Employee {
 		Course course = school.getCourses().get(index);
 		course.setTeacher(this);
 		courses.add(course);
+	}
+
+	/**
+	 * Adds the students.
+	 *
+	 * @param code     the code
+	 * @param name     the name
+	 * @param lastName the last name
+	 * @param password the password
+	 * @throws NullEntityException the null entity exception
+	 */
+	public void addStudents(String code, String name, String lastName, String password) throws NullEntityException {
+		school.addStudents(code, name, lastName, password);
+	}
+
+	/**
+	 * Removes the student.
+	 *
+	 * @param code the code
+	 * @throws NullEntityException the null entity exception
+	 */
+	public void removeStudent(String code) throws NullEntityException {
+		school.removeStudent(code);
 	}
 
 	/**

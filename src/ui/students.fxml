@@ -13,12 +13,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.StudentsController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="1045.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.StudentsController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="600.0">
          <children>
-            <Pane prefHeight="35.0" prefWidth="17.0" />
+            <Pane prefHeight="28.0" prefWidth="7.0" />
             <Button mnemonicParsing="false" onAction="#goBackButton" text="&lt;" />
          </children>
       </HBox>
