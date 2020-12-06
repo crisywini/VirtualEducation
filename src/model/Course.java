@@ -320,6 +320,12 @@ public class Course implements ICourse, Comparable<Course> {
 		return true;
 	}
 
+	/**
+	 * Compare to.
+	 *
+	 * @param o the o
+	 * @return the int
+	 */
 	@Override
 	public int compareTo(Course o) {
 		int id = Integer.parseInt(this.id);
@@ -333,6 +339,11 @@ public class Course implements ICourse, Comparable<Course> {
 		return comparation;
 	}
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public String toString() {
 		return "Course [id=" + id + "]";

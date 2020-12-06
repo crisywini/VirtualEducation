@@ -12,6 +12,8 @@ public class Student extends Person {
 
 	/** The account. */
 	private StudentAccount account;
+	
+	/** The school. */
 	private VirtualSchool school;
 
 	/**
@@ -20,7 +22,9 @@ public class Student extends Person {
 	 * @param code     the code
 	 * @param name     the name
 	 * @param lastName the last name
+	 * @param password the password
 	 * @param account  the account
+	 * @param school the school
 	 */
 	public Student(String code, String name, String lastName, String password, StudentAccount account,
 			VirtualSchool school) {
@@ -29,17 +33,33 @@ public class Student extends Person {
 		this.school = school;
 	}
 
+	/**
+	 * Adds the register.
+	 */
 	public void addRegister() {
 		int id = registers.size();
 		Register register = new Register(id + "" + getCode(), this);
 		registers.add(register);
 	}
 
+	/**
+	 * Removes the register.
+	 *
+	 * @param id the id
+	 */
 	public void removeRegister(String id) {
 		int index = searchRegister(id);
 		registers.remove(index);
 	}
 
+	/**
+	 * Search register.
+	 *
+	 * @param id the id
+	 * @param low the low
+	 * @param high the high
+	 * @return the int
+	 */
 	private int searchRegister(String id, int low, int high) {
 		int mid = low + (high - low) / 2;
 		if (high < low) {
@@ -55,14 +75,30 @@ public class Student extends Person {
 		return searchRegister(id, mid + 1, high);
 	}
 
+	/**
+	 * Search register.
+	 *
+	 * @param id the id
+	 * @return the int
+	 */
 	public int searchRegister(String id) {
 		return searchRegister(id, 0, registers.size() - 1);
 	}
 
+	/**
+	 * Gets the school.
+	 *
+	 * @return the school
+	 */
 	public VirtualSchool getSchool() {
 		return school;
 	}
 
+	/**
+	 * Sets the school.
+	 *
+	 * @param school the new school
+	 */
 	public void setSchool(VirtualSchool school) {
 		this.school = school;
 	}

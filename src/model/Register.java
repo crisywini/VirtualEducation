@@ -16,6 +16,8 @@ public class Register {
 
 	/** The student. */
 	private Student student;
+	
+	/** The date. */
 	private Date date;
 
 	/** The courses. */
@@ -106,6 +108,9 @@ public class Register {
 		return searchCourse(idCourse, 0, courses.size() - 1);
 	}
 
+	/**
+	 * Sort by insertion.
+	 */
 	public void sortByInsertion() {
 		int j;
 		Course course;
@@ -120,10 +125,20 @@ public class Register {
 		}
 	}
 
+	/**
+	 * Gets the date.
+	 *
+	 * @return the date
+	 */
 	public Date getDate() {
 		return date;
 	}
 
+	/**
+	 * Sets the date.
+	 *
+	 * @param date the new date
+	 */
 	public void setDate(Date date) {
 		this.date = date;
 	}

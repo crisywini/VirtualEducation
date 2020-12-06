@@ -16,6 +16,12 @@ public class TeacherAccount extends Account {
 		super(person, id, amount);
 	}
 
+	/**
+	 * Instantiates a new teacher account.
+	 *
+	 * @param id the id
+	 * @param ammount the ammount
+	 */
 	public TeacherAccount(String id, double ammount) {
 		super(id, ammount);
 	}
