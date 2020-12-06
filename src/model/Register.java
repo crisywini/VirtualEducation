@@ -47,9 +47,9 @@ public class Register {
 		if (index == -1) {
 			throw new NullEntityException("The course wiuth id: " + id + " does not exists");
 		}
-		index = searchCourse(id);
-		if(index != -1) {
-			throw new EntityRepeatedException("The course with id: "+id+ " already exists!");
+		int index2 = searchCourse(id);
+		if (index2 != -1) {
+			throw new EntityRepeatedException("The course with id: " + id + " already exists!");
 		}
 		Course course = school.getCourses().get(index);
 		courses.add(course);
@@ -82,7 +82,7 @@ public class Register {
 	 * @return the int
 	 */
 	private int searchCourse(String idCourse, int low, int high) {
-		int mid =  low+ (high-low) / 2;
+		int mid = low + (high - low) / 2;
 		if (high < low) {
 			return -1;
 		}
@@ -103,7 +103,7 @@ public class Register {
 	 * @return the int
 	 */
 	public int searchCourse(String idCourse) {
-		return searchCourse(idCourse, 0, courses.size());
+		return searchCourse(idCourse, 0, courses.size() - 1);
 	}
 
 	public void sortByInsertion() {

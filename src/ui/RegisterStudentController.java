@@ -4,8 +4,11 @@
 
 package ui;
 
+import customExceptions.EntityRepeatedException;
+import customExceptions.NullEntityException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -51,11 +54,39 @@ public class RegisterStudentController {
 
 	@FXML
 	void addCourse(ActionEvent event) {
+		if (!codeTxt.getText().isEmpty()) {
+			try {
+				register.addCourse(codeTxt.getText());
+				MainController.showAlert("Added the course: " + codeTxt.getText(), "INFORMATION", AlertType.WARNING);
+				codeTxt.setText("");
+			} catch (EntityRepeatedException e) {
+				MainController.showAlert(e.getMessage(), "ERROR", AlertType.ERROR);
+			} catch (NullEntityException e) {
+				MainController.showAlert(e.getMessage(), "ERROR", AlertType.ERROR);
+			}
+		} else {
+			MainController.showAlert("Need the code to remove the course", "WARNING", AlertType.WARNING);
+		}
+	}
 
+	@FXML
+	void removeCourse(ActionEvent event) {
+		if (!codeTxt.getText().isEmpty()) {
+			try {
+				register.removeCourse(codeTxt.getText());
+				MainController.showAlert("Removed the course: " + codeTxt.getText(), "WARNING", AlertType.WARNING);
+				codeTxt.setText("");
+			} catch (NullEntityException e) {
+				MainController.showAlert(e.getMessage(), "ERROR", AlertType.ERROR);
+			}
+		} else {
+			MainController.showAlert("Need the code to remove the course", "WARNING", AlertType.WARNING);
+		}
 	}
 
 	@FXML
 	void goBackButton(ActionEvent event) {
+		lastController.getLastController().loadStudentsView();
 	}
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete
