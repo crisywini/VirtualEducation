@@ -1,47 +1,95 @@
 package ui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import model.Person;
+import model.Teacher;
+import model.VirtualSchool;
 import threads.ImageThread;
 
-public class LoginController implements Initializable{
+public class LoginController {
 	@FXML
 	private ImageView imageView;
 	@FXML
 	private TextField userField;
 	@FXML
 	private PasswordField passwordField;
+	private MainController mainController;
+
+	public void setMainController(MainController mainController) {
+		this.mainController = mainController;
+	}
+
 	@FXML
 	public void handleLogin(ActionEvent e) {
-		if(isInputValid()) {
-			MainController.showAlert("", "asd", AlertType.CONFIRMATION);
+		if (isInputValid()) {
+
+			String user = userField.getText();
+			String password = passwordField.getText();
+			Main main = mainController.getMain();
+			VirtualSchool school = main.getVirtualSchool();
+			Person person = school.searchUser(user, password);
+			if (person == null) {
+				MainController.showAlert("Welcome user: ", "WELCOME!", AlertType.INFORMATION);
+				loadTeacherView((Teacher) person);
+			} else {
+				MainController.showAlert("The user or the password is not correct", "WARNING", AlertType.WARNING);
+			}
 		}
 	}
+
+	public void loadTeacherView(Teacher teacher) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherInit.fxml"));
+			Parent root = loader.load();
+			TeacherController controller = loader.getController();
+			controller.setMainController(mainController);
+			controller.setTeacher(teacher);
+			mainController.getPane().setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void loadDirectorView(Teacher teacher) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherInit.fxml"));
+			Parent root = loader.load();
+			TeacherController controller = loader.getController();
+			controller.setMainController(mainController);
+			controller.setTeacher(teacher);
+			mainController.getPane().setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public boolean isInputValid() {
 		String errorMessage = "";
-		if(userField.getText().isEmpty()) {
+		if (userField.getText().isEmpty()) {
 			errorMessage += "Please enter the user\n";
 		}
-		if(passwordField.getText().isEmpty()) {
+		if (passwordField.getText().isEmpty()) {
 			errorMessage += "Please enter the password\n";
 		}
-		if(errorMessage.isEmpty()) {
+		if (errorMessage.isEmpty()) {
 			return true;
-		}else {
+		} else {
 			MainController.showAlert(errorMessage, "WARNING", AlertType.WARNING);
 		}
 		return false;
 	}
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+
+	@FXML
+	public void initialize() {
 		Thread images = new ImageThread(imageView);
 		images.start();
 	}
