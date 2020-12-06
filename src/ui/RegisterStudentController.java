@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.Course;
 import model.Register;
 
@@ -45,6 +46,7 @@ public class RegisterStudentController {
 
 	public void setLastController(StudentsController lastController) {
 		this.lastController = lastController;
+		initTableView();
 	}
 
 	@FXML
@@ -59,5 +61,14 @@ public class RegisterStudentController {
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
 
+	}
+
+	private void initTableView() {
+		codeTC.setCellValueFactory(new PropertyValueFactory<Course, String>("id"));
+		courseTC.setCellValueFactory(new PropertyValueFactory<Course, String>("name"));
+		priceTC.setCellValueFactory(new PropertyValueFactory<Course, String>("description"));
+		tableView.getItems().clear();
+		tableView.getItems().addAll(
+				lastController.getLastController().getMainController().getMain().getVirtualSchool().getCourses());
 	}
 }

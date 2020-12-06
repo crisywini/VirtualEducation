@@ -87,15 +87,19 @@
             <Button mnemonicParsing="false" onAction="#addRegister" text="Add register" />
          </children>
       </HBox>
-      <TableView fx:id="tableViewStudents" prefHeight="283.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
-        <columns>
-          <TableColumn fx:id="codeTC" prefWidth="75.0" text="Code" />
-          <TableColumn fx:id="nameTC" prefWidth="75.0" text="Name" />
-            <TableColumn fx:id="lastnameTC" prefWidth="75.0" text="Lastname" />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
+      <HBox alignment="CENTER" prefHeight="283.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+         <children>
+            <TableView fx:id="tableViewStudents" prefHeight="283.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
+              <columns>
+                <TableColumn fx:id="codeTC" prefWidth="75.0" text="Code" />
+                <TableColumn fx:id="nameTC" prefWidth="75.0" text="Name" />
+                  <TableColumn fx:id="lastnameTC" prefWidth="75.0" text="Lastname" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </HBox>
    </children>
 </VBox>
