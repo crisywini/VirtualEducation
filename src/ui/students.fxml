@@ -87,7 +87,7 @@
             <Button mnemonicParsing="false" onAction="#addRegister" text="Add register" />
          </children>
       </HBox>
-      <TableView fx:id="tableViewStudents" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tableViewStudents" prefHeight="283.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
         <columns>
           <TableColumn fx:id="codeTC" prefWidth="75.0" text="Code" />
           <TableColumn fx:id="nameTC" prefWidth="75.0" text="Name" />

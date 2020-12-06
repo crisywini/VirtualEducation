@@ -2,6 +2,7 @@ package ui;
 
 import java.io.IOException;
 
+import customExceptions.NullEntityException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +20,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		loadDefaultData();
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
 			Parent root = loader.load();
@@ -30,6 +32,16 @@ public class Main extends Application {
 			primaryStage.setTitle(school.getName());
 			primaryStage.show();
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void loadDefaultData() {
+		try {
+			school.addTeacher("12234", "Carlos", "Samper", "root", 3500000);
+			school.addStudents("60001", "Amanda", "Medina", "student");
+			school.addDirector("12345", "Roberto", "Gomez", "root1", 5000000);
+		} catch (NullEntityException e) {
 			e.printStackTrace();
 		}
 	}

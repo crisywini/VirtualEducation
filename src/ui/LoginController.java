@@ -37,9 +37,11 @@ public class LoginController {
 			Main main = mainController.getMain();
 			VirtualSchool school = main.getVirtualSchool();
 			Person person = school.searchUser(user, password);
-			if (person == null) {
-				MainController.showAlert("Welcome user: ", "WELCOME!", AlertType.INFORMATION);
-				loadTeacherView((Teacher) person);
+			if (person != null) {
+				MainController.showAlert("Welcome user: " + person.getName(), "WELCOME!", AlertType.INFORMATION);
+				if (person instanceof Teacher) {
+					loadTeacherView((Teacher) person);
+				}
 			} else {
 				MainController.showAlert("The user or the password is not correct", "WARNING", AlertType.WARNING);
 			}
@@ -52,6 +54,7 @@ public class LoginController {
 			Parent root = loader.load();
 			TeacherController controller = loader.getController();
 			controller.setMainController(mainController);
+			controller.setLastController(this);
 			controller.setTeacher(teacher);
 			mainController.getPane().setCenter(root);
 		} catch (IOException e) {

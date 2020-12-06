@@ -51,6 +51,7 @@ public class TeacherController {
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
 		initTableView();
+		infoTeacherLabel.setText("Teacher: " + teacher.getName() + " " + teacher.getLastName());
 	}
 
 	public MainController getMainController() {
@@ -63,10 +64,10 @@ public class TeacherController {
 
 	@FXML
 	void addStudents(ActionEvent e) {
-		// abrir pagina para agregar los datos del nuevo estudiante
+		loadStudentsView();
 	}
 
-	public void loadTeacherView(Teacher teacher) {
+	public void loadStudentsView() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("students.fxml"));
 			Parent root = loader.load();
