@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="440.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PayRegisterController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="440.0" spacing="20.0" style="-fx-background-color: #bec6c6;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PayRegisterController">
    <children>
       <GridPane>
         <columnConstraints>
@@ -36,8 +35,8 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Button mnemonicParsing="false" onAction="#depositMoney" text="Deposit money" />
-                  <Button mnemonicParsing="false" onAction="#pay" text="Pay" />
+                  <Button mnemonicParsing="false" onAction="#depositMoney" style="-fx-background-radius: 20px;" text="Deposit money" />
+                  <Button mnemonicParsing="false" onAction="#pay" style="-fx-background-radius: 20px;" text="Pay" />
                </children>
             </HBox>
          </children>

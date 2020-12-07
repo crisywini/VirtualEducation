@@ -88,7 +88,7 @@ public class StudentsViewController {
 			Stage stage = new Stage();
 			stage.setScene(scene);
 			stage.setTitle("Paying the registers");
-			stage.showAndWait();
+			stage.showAndWait(); 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
