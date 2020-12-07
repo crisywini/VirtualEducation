@@ -16,12 +16,18 @@ public class Register {
 
 	/** The student. */
 	private Student student;
-	
+
 	/** The date. */
 	private Date date;
 
 	/** The courses. */
 	private ArrayList<Course> courses;
+
+	/** The total. */
+	private double total;
+
+	/** The state. */
+	private String state;
 
 	/**
 	 * Instantiates a new register.
@@ -34,6 +40,7 @@ public class Register {
 		this.student = student;
 		date = new Date();
 		courses = new ArrayList<Course>();
+		state = "Inactive";
 	}
 
 	/**
@@ -195,6 +202,42 @@ public class Register {
 	 */
 	public void setCourses(ArrayList<Course> courses) {
 		this.courses = courses;
+	}
+
+	/**
+	 * Gets the total.
+	 *
+	 * @return the total
+	 */
+	public double getTotal() {
+		return courses.size() * 200000;
+	}
+
+	/**
+	 * Sets the total.
+	 *
+	 * @param total the new total
+	 */
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	/**
+	 * Gets the state.
+	 *
+	 * @return the state
+	 */
+	public String getState() {
+		return state;
+	}
+
+	/**
+	 * Sets the state.
+	 *
+	 * @param state the new state
+	 */
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	/**

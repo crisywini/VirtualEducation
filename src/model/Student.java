@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import customExceptions.EmptySearchException;
+
 /**
  * The Class Student.
  */
@@ -12,7 +14,7 @@ public class Student extends Person {
 
 	/** The account. */
 	private StudentAccount account;
-	
+
 	/** The school. */
 	private VirtualSchool school;
 
@@ -24,13 +26,14 @@ public class Student extends Person {
 	 * @param lastName the last name
 	 * @param password the password
 	 * @param account  the account
-	 * @param school the school
+	 * @param school   the school
 	 */
 	public Student(String code, String name, String lastName, String password, StudentAccount account,
 			VirtualSchool school) {
 		super(code, name, lastName, password);
 		this.registers = new ArrayList<Register>();
 		this.school = school;
+		this.account = account;
 	}
 
 	/**
@@ -55,8 +58,8 @@ public class Student extends Person {
 	/**
 	 * Search register.
 	 *
-	 * @param id the id
-	 * @param low the low
+	 * @param id   the id
+	 * @param low  the low
 	 * @param high the high
 	 * @return the int
 	 */
@@ -83,6 +86,50 @@ public class Student extends Person {
 	 */
 	public int searchRegister(String id) {
 		return searchRegister(id, 0, registers.size() - 1);
+	}
+
+	public ArrayList<Course> getAllCourses() {
+		ArrayList<Course> courses = new ArrayList<Course>();
+		for (Register register : registers) {
+			courses.addAll(register.getCourses());
+		}
+		return courses;
+	}
+
+	public ArrayList<Course> getCoursesByName(String name) {
+		ArrayList<Course> courses = new ArrayList<Course>();
+		for (Register register : registers) {
+			for (Course course : register.getCourses()) {
+				if (course.getName().contains(name)) {
+					courses.add(course);
+				}
+			}
+		}
+		return courses;
+	}
+
+	public ArrayList<Course> getCourseByTeacher(String nameTeacher) {
+		ArrayList<Course> courses = new ArrayList<Course>();
+		for (Register register : registers) {
+			for (Course course : register.getCourses()) {
+				if (course.getTeacher().getName().contains(nameTeacher)) {
+					courses.add(course);
+				}
+			}
+		}
+		return courses;
+	}
+
+	public ArrayList<Course> getCourses(String criteria) throws EmptySearchException {
+		ArrayList<Course> courses = getCourseByTeacher(criteria);
+		if (courses.size() > 0) {
+			return courses;
+		}
+		courses = getCoursesByName(criteria);
+		if (courses.size() > 0) {
+			return courses;
+		}
+		throw new EmptySearchException("The search did not find any match!");
 	}
 
 	/**

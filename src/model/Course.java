@@ -34,6 +34,9 @@ public class Course implements ICourse, Comparable<Course> {
 	/** The school. */
 	private VirtualSchool school;
 
+	/** The state. */
+	private String state;
+
 	/**
 	 * Instantiates a new course.
 	 *
@@ -53,6 +56,7 @@ public class Course implements ICourse, Comparable<Course> {
 		this.description = description;
 		this.teacher = teacher;
 		this.school = school;
+		state = "Inactive";
 	}
 
 	/**
@@ -71,6 +75,7 @@ public class Course implements ICourse, Comparable<Course> {
 		this.description = description;
 		this.teacher = teacher;
 		this.school = school;
+		state = "Inactive";
 	}
 
 	/**
@@ -156,6 +161,24 @@ public class Course implements ICourse, Comparable<Course> {
 			Register register = registers.get(i);
 			students.add(register.getStudent());
 		}
+	}
+
+	/**
+	 * Gets the state.
+	 *
+	 * @return the state
+	 */
+	public String getState() {
+		return state;
+	}
+
+	/**
+	 * Sets the state.
+	 *
+	 * @param state the new state
+	 */
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	/**

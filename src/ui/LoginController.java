@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import model.Person;
+import model.Student;
 import model.Teacher;
 import model.VirtualSchool;
 import threads.ImageThread;
@@ -24,6 +25,10 @@ public class LoginController {
 	private PasswordField passwordField;
 	private MainController mainController;
 	private ImageThread images;
+
+	public MainController getMainController() {
+		return mainController;
+	}
 
 	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
@@ -42,6 +47,10 @@ public class LoginController {
 				MainController.showAlert("Welcome user: " + person.getName(), "WELCOME!", AlertType.INFORMATION);
 				if (person instanceof Teacher) {
 					loadTeacherView((Teacher) person);
+					images.isStop(true);
+				}
+				if (person instanceof Student) {
+					loadStudentsView((Student) person);
 					images.isStop(true);
 				}
 			} else {
@@ -71,6 +80,19 @@ public class LoginController {
 			TeacherController controller = loader.getController();
 			controller.setMainController(mainController);
 			controller.setTeacher(teacher);
+			mainController.getPane().setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void loadStudentsView(Student student) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("studentsView.fxml"));
+			Parent root = loader.load();
+			StudentsViewController controller = loader.getController();
+			controller.setLoginController(this);
+			controller.setStudent(student);
 			mainController.getPane().setCenter(root);
 		} catch (IOException e) {
 			e.printStackTrace();

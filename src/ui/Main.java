@@ -69,7 +69,6 @@ public class Main extends Application {
 			school.getTeachers().get(0).addCourse("1234");
 			school.getTeachers().get(0).addCourse("1244");
 			school.getTeachers().get(0).addCourse("1254");
-
 		} catch (NullEntityException e) {
 			e.printStackTrace();
 		} catch (EntityRepeatedException e) {

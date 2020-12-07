@@ -288,4 +288,10 @@ public class Teacher extends Employee {
 	public void setSchool(VirtualSchool school) {
 		this.school = school;
 	}
+
+	@Override
+	public String toString() {
+		return getName() + " " + getLastName();
+	}
+
 }
