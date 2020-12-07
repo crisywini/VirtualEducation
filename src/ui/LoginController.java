@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import model.Director;
 import model.Person;
 import model.Student;
 import model.Teacher;
@@ -26,6 +27,7 @@ public class LoginController {
 	private MainController mainController;
 	private ImageThread images;
 
+
 	public MainController getMainController() {
 		return mainController;
 	}
@@ -37,7 +39,6 @@ public class LoginController {
 	@FXML
 	public void handleLogin(ActionEvent e) {
 		if (isInputValid()) {
-
 			String user = userField.getText();
 			String password = passwordField.getText();
 			Main main = mainController.getMain();
@@ -51,6 +52,10 @@ public class LoginController {
 				}
 				if (person instanceof Student) {
 					loadStudentsView((Student) person);
+					images.isStop(true);
+				}
+				if (person instanceof Director) {
+					loadDirectorView((Director) person);
 					images.isStop(true);
 				}
 			} else {
@@ -73,13 +78,13 @@ public class LoginController {
 		}
 	}
 
-	public void loadDirectorView(Teacher teacher) {
+	public void loadDirectorView(Director director) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherInit.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("directorInit.fxml"));
 			Parent root = loader.load();
-			TeacherController controller = loader.getController();
-			controller.setMainController(mainController);
-			controller.setTeacher(teacher);
+			DirectorInitController controller = loader.getController();
+			controller.setDirector(director);
+			controller.setLastController(this);
 			mainController.getPane().setCenter(root);
 		} catch (IOException e) {
 			e.printStackTrace();

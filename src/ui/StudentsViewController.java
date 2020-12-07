@@ -72,6 +72,11 @@ public class StudentsViewController {
 		}
 	}
 
+    @FXML
+    void goBackButton(ActionEvent event) {
+    	loginController.getMainController().loadLogin();
+    }
+
 	@FXML
 	void payRegister(ActionEvent event) {
 		loadPayRegisterView();

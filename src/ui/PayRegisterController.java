@@ -45,7 +45,7 @@ public class PayRegisterController {
 	public void setStudent(Student student) {
 		this.student = student;
 		initTableView();
-		
+
 		amountLabel.setText("$ " + student.getAccount().getAmount());
 	}
 
@@ -101,6 +101,7 @@ public class PayRegisterController {
 						"INFORMATION", AlertType.INFORMATION);
 				registerSelected.setState("Active");
 				initTableView();
+				amountLabel.setText("$" + student.getAccount().getAmount());
 			} catch (NotEnoughMoneyException e) {
 				MainController.showAlert(e.getMessage(), "ERROR", AlertType.ERROR);
 			}
@@ -119,6 +120,7 @@ public class PayRegisterController {
 		dateTC.setCellValueFactory(new PropertyValueFactory<Register, Date>("date"));
 		totalTC.setCellValueFactory(new PropertyValueFactory<Register, Double>("total"));
 		stateTC.setCellValueFactory(new PropertyValueFactory<Register, String>("state"));
-
+		tableView.getItems().clear();
+		tableView.getItems().addAll(student.getRegisters());
 	}
 }

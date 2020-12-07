@@ -2,8 +2,11 @@
 
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="pane" prefHeight="444.0" prefWidth="1045.0" style="-fx-background-color: #bec6c6;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainController">
-    <center>
-        <fx:include fx:id="login" source="login.fxml" />
-    </center>
+<BorderPane fx:id="pane" prefHeight="444.0"
+	prefWidth="1045.0" style="-fx-background-color: #bec6c6;"
+	xmlns="http://javafx.com/javafx/11.0.1"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainController">
+	<center>
+		<fx:include fx:id="login" source="login.fxml" />
+	</center>
 </BorderPane>
