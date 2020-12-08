@@ -17,25 +17,53 @@ import model.Teacher;
 import model.VirtualSchool;
 import threads.ImageThread;
 
+/**
+ * The Class LoginController.
+ */
 public class LoginController {
+	
+	/** The image view. */
 	@FXML
 	private ImageView imageView;
+	
+	/** The user field. */
 	@FXML
 	private TextField userField;
+	
+	/** The password field. */
 	@FXML
 	private PasswordField passwordField;
+	
+	/** The main controller. */
 	private MainController mainController;
+	
+	/** The images. */
 	private ImageThread images;
 
 
+	/**
+	 * Gets the main controller.
+	 *
+	 * @return the main controller
+	 */
 	public MainController getMainController() {
 		return mainController;
 	}
 
+	/**
+	 * Sets the main controller.
+	 *
+	 * @param mainController the new main controller
+	 */
 	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
 	}
 
+	/**
+	 * Handle login.
+	 *
+	 * @param e the e
+	 */
 	@FXML
 	public void handleLogin(ActionEvent e) {
 		if (isInputValid()) {
@@ -64,6 +92,11 @@ public class LoginController {
 		}
 	}
 
+	/**
+	 * Load teacher view.
+	 *
+	 * @param teacher the teacher
+	 */
 	public void loadTeacherView(Teacher teacher) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherInit.fxml"));
@@ -78,6 +111,11 @@ public class LoginController {
 		}
 	}
 
+	/**
+	 * Load director view.
+	 *
+	 * @param director the director
+	 */
 	public void loadDirectorView(Director director) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("directorInit.fxml"));
@@ -91,6 +129,11 @@ public class LoginController {
 		}
 	}
 
+	/**
+	 * Load students view.
+	 *
+	 * @param student the student
+	 */
 	public void loadStudentsView(Student student) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("studentsView.fxml"));
@@ -104,6 +147,11 @@ public class LoginController {
 		}
 	}
 
+	/**
+	 * Checks if is input valid.
+	 *
+	 * @return true, if is input valid
+	 */
 	public boolean isInputValid() {
 		String errorMessage = "";
 		if (userField.getText().isEmpty()) {
@@ -120,6 +168,9 @@ public class LoginController {
 		return false;
 	}
 
+	/**
+	 * Initialize.
+	 */
 	@FXML
 	public void initialize() {
 		images = new ImageThread(imageView);
