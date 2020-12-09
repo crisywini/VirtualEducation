@@ -6,6 +6,11 @@ package model;
 public class StudentAccount extends Account {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Instantiates a new student account.
 	 *
 	 * @param person the person

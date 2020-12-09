@@ -1,8 +1,9 @@
 package ui;
 
+import java.io.FileNotFoundException;
+
 import java.io.IOException;
 
-import customExceptions.EntityRepeatedException;
 import customExceptions.NullEntityException;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -53,7 +54,7 @@ public class Main extends Application {
 			controller.setStage(stage);
 			controller.setMain(this);
 			controller.initThread();
-			
+
 			stage.setScene(scene);
 			stage.show();
 		} catch (IOException e) {
@@ -98,27 +99,26 @@ public class Main extends Application {
 	 */
 	public void loadDefaultData() {
 		try {
-			school.addTeacher("12234", "Carlos", "Samper", "root", 3500000);
-			school.addTeacher("12235", "Alberto", "Samper", "root", 3500000);
-			school.addTeacher("12236", "Camila", "Samper", "root", 3500000);
-			school.addTeacher("12237", "Beatriz", "Samper", "root", 3500000);
-			school.addTeacher("12238", "Delio", "Samper", "root", 3500000);
-
-			school.addStudents("60001", "Amanda", "Medina", "student");
-			school.addDirector("12345", "Roberto", "Gomez", "root1", 5000000);
-			school.addCourse("1", "Biology", "Biology for 6th grade");
-			school.addCourse("2", "History", "History for 6th grade");
-			school.addCourse("3", "History", "History for 6th grade");
-
-			school.getCourses().get(0).setTeacher(school.getTeachers().get(0));
-			school.getCourses().get(1).setTeacher(school.getTeachers().get(0));
-			school.getCourses().get(2).setTeacher(school.getTeachers().get(0));
-			school.getTeachers().get(0).addCourse("1");
-			school.getTeachers().get(0).addCourse("2");
-			school.getTeachers().get(0).addCourse("3");
+			school.loadData();
+			if (school.getDirectors().size() == 0) {
+				school.addDirector("1", "Roberto", "Castro", "12345", 5000000);
+				school.saveDirectors();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		} catch (NullEntityException e) {
 			e.printStackTrace();
-		} catch (EntityRepeatedException e) {
+		}
+	}
+
+	public void saveData() {
+		try {
+			school.saveData();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

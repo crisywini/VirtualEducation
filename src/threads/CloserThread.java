@@ -12,7 +12,7 @@ public class CloserThread extends Thread {
 
 	/** The stage. */
 	private Stage stage;
-	
+
 	/** The main. */
 	private Main main;
 
@@ -20,9 +20,9 @@ public class CloserThread extends Thread {
 	 * Instantiates a new closer thread.
 	 *
 	 * @param stage the stage
-	 * @param main the main
+	 * @param main  the main
 	 */
-	public CloserThread(Stage stage,  Main main) {
+	public CloserThread(Stage stage, Main main) {
 		this.stage = stage;
 		this.main = main;
 	}
@@ -39,6 +39,8 @@ public class CloserThread extends Thread {
 				public void run() {
 					stage.hide();
 					main.loadMain(stage);
+					Thread saver = new SaverThread(main);
+					saver.start();
 				}
 			});
 		} catch (InterruptedException e) {
