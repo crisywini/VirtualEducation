@@ -239,7 +239,7 @@ public class DirectorInitController {
 	/**
 	 * Inits the table view.
 	 */
-	private void initTableView() {
+	public void initTableView() {
 		codeTC.setCellValueFactory(new PropertyValueFactory<Teacher, String>("code"));
 		nameTC.setCellValueFactory(new PropertyValueFactory<Teacher, String>("name"));
 		lastnameTC.setCellValueFactory(new PropertyValueFactory<Teacher, String>("lastName"));

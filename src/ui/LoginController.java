@@ -72,6 +72,7 @@ public class LoginController {
 			Main main = mainController.getMain();
 			VirtualSchool school = main.getVirtualSchool();
 			Person person = school.searchUser(user, password);
+			
 			if (person != null) {
 				MainController.showAlert("Welcome user: " + person.getName(), "WELCOME!", AlertType.INFORMATION);
 				if (person instanceof Teacher) {

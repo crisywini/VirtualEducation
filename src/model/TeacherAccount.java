@@ -6,6 +6,11 @@ package model;
 public class TeacherAccount extends Account {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Instantiates a new teacher account.
 	 *
 	 * @param person the person

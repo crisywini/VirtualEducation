@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Course;
 import model.Register;
+import model.Teacher;
 
 /**
  * The Class RegisterStudentController.
@@ -37,10 +38,10 @@ public class RegisterStudentController {
 	/** The price TC. */
 	@FXML // fx:id="pŕiceTC"
 	private TableColumn<Course, String> priceTC; // Value injected by FXMLLoader
-	
+
 	/** The register. */
 	private Register register;
-	
+
 	/** The last controller. */
 	private StudentsController lastController;
 
@@ -150,11 +151,12 @@ public class RegisterStudentController {
 	 * Inits the table view.
 	 */
 	private void initTableView() {
+		Teacher teacher = lastController.getTeacher();
 		codeTC.setCellValueFactory(new PropertyValueFactory<Course, String>("id"));
 		courseTC.setCellValueFactory(new PropertyValueFactory<Course, String>("name"));
 		priceTC.setCellValueFactory(new PropertyValueFactory<Course, String>("description"));
 		tableView.getItems().clear();
-		tableView.getItems().addAll(
-				lastController.getLastController().getMainController().getMain().getVirtualSchool().getCourses());
+		tableView.getItems().addAll(lastController.getLastController().getMainController().getMain().getVirtualSchool()
+				.getCoursesByTeacher(teacher.getCode()));
 	}
 }

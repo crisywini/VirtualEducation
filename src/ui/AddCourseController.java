@@ -113,6 +113,7 @@ public class AddCourseController {
 				descriptionTxt.setText("");
 				MainController.showAlert("Added the course: " + nameTxt.getText(), "INFORMATION",
 						AlertType.CONFIRMATION);
+				lastController.initTableView();
 			} catch (NullEntityException e) {
 				MainController.showAlert(e.getMessage(), "ERROR", AlertType.ERROR);
 			}
