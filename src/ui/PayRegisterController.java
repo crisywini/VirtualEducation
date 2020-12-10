@@ -44,10 +44,10 @@ public class PayRegisterController {
 	/** The state TC. */
 	@FXML // fx:id="stateTC"
 	private TableColumn<Register, String> stateTC; // Value injected by FXMLLoader
-	
+
 	/** The student. */
 	private Student student;
-	
+
 	/** The last controller. */
 	private StudentsViewController lastController;
 
@@ -117,7 +117,7 @@ public class PayRegisterController {
 	 * Show input text dialog.
 	 *
 	 * @param message the message
-	 * @param title the title
+	 * @param title   the title
 	 * @return the string
 	 */
 	private String showInputTextDialog(String message, String title) {
@@ -145,13 +145,17 @@ public class PayRegisterController {
 		Register registerSelected = tableView.getSelectionModel().getSelectedItem();
 		if (registerSelected != null) {
 			try {
-				student.getAccount().withdrawMoney(registerSelected.getTotal());
-				MainController.showAlert(
-						"The register: " + registerSelected.getId() + " was paid\n Thanks! enjoy the course",
-						"INFORMATION", AlertType.INFORMATION);
-				registerSelected.setState("Active");
-				initTableView();
-				amountLabel.setText("$" + student.getAccount().getAmount());
+				if (registerSelected.getState().equals("Active")) {
+					MainController.showAlert("The register is already paid", "INFORMATION", AlertType.WARNING);
+				} else {
+					student.getAccount().withdrawMoney(registerSelected.getTotal());
+					MainController.showAlert(
+							"The register: " + registerSelected.getId() + " was paid\n Thanks! enjoy the course",
+							"INFORMATION", AlertType.INFORMATION);
+					registerSelected.setState("Active");
+					initTableView();
+					amountLabel.setText("$" + student.getAccount().getAmount());
+				}
 			} catch (NotEnoughMoneyException e) {
 				MainController.showAlert(e.getMessage(), "ERROR", AlertType.ERROR);
 			}
